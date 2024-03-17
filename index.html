@@ -32,6 +32,10 @@
 
       const calculate = () => {
         let result;
+        if(!numberA || !numberB || !operation){ 
+          alert('ERROR');
+          return;
+        }
         switch (operation) {
           case '+':
             result = parseFloat(numberA) + parseFloat(numberB);
@@ -48,7 +52,7 @@
           default:
             result = '';
         }
-        setResult(result);
+        setResult(result.toString());
       };
 
       return (
@@ -65,9 +69,12 @@
           value={numberB}
           onChange={(e) => setNumberB(e.target.value)}/>
 
-          <select name="operation"  required
-            onChange={(e) => setOperation(e.target.value)}>
-            <option value='' selected>
+          <select name="operation"
+            required
+            defaultValue='0'
+            onChange={(e) => setOperation(e.target.value)}
+            >
+            <option value='0' disabled>
               👉Select operation
             </option>
             <option value="+">+</option>
@@ -82,9 +89,7 @@
         </div>
       );
     }
-
     const root = document.getElementById('root');
     ReactDOM.render(<App />, root);
-
   </script>
 </html>
