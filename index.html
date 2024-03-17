@@ -54,6 +54,7 @@
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
+
           <input type="number" id="numberInputA" 
           placeholder="👉Write a number..."
           value={numberA}
@@ -66,7 +67,6 @@
 
           <select name="operation"  required
             onChange={(e) => setOperation(e.target.value)}>
-
             <option value='' selected>
               👉Select operation
             </option>
@@ -74,12 +74,11 @@
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
-
           </select>
-          
 
           <button onClick={calculate}>Calculate</button>
           {result !== ''&&<h1> The result is: {result}</h1>}
+          
         </div>
       );
     }
