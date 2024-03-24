@@ -24,14 +24,53 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
+      function calculateResult() {
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+        const operator = document.querySelector(
+          'select[name="operator"]'
+        ).value;
+        let result;
+
+        switch (operator) {
+          case "add":
+            result = num1 + num2;
+            break;
+          case "subtract":
+            result = num1 - num2;
+            break;
+          case "multiply":
+            result = num1 * num2;
+            break;
+          case "divide":
+            result = num1 / num2;
+            break;
+        }
+
+        document.getElementById("result").innerText =
+          "The result is : " + result;
+      }
+
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
-          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
+          <input type="number" id="num1" placeholder="👉 Write a number" />
+          <input type="number" id="num2" placeholder="👉 Write another one" />
+          <select name="operator">
+            <option value="disabled" disabled selected>
+              👉 Select operation
+            </option>
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+          </select>
+          <button onClick={calculateResult}>Calculate</button>
+          <h1 id="result"></h1>
         </div>
       );
     }
-    const root = document.getElementById('root');
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
