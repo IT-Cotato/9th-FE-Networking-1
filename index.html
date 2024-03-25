@@ -24,10 +24,63 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
+      const [num1, setNum1] = React.useState("");
+      const [num2, setNum2] = React.useState("");
+      const [op, setOp] = React.useState("");
+      const [result, setResult] = React.useState("");
+
+      const calculate = () => {
+        let number;
+        switch (op) {
+          case "plus":
+            number = parseFloat(num1) + parseFloat(num2);
+            break;
+          case "minus":
+            number = parseFloat(num1) - parseFloat(num2);
+            break;
+          case "multiply":
+            number = parseFloat(num1) * parseFloat(num2);
+            break;
+          case "devide":
+            number = parseFloat(num1) / parseFloat(num2);
+            break;
+          
+        }
+
+        if (!isNaN(number))  {
+          setResult(`The result is: ${number}`);
+        } else {
+          setResult("Error: Please enter a valid number and select an operation symbol.");
+        }
+      }
+
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
-          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
+          <input 
+            type="number" 
+            placeholder="👉🏻 Write a number..." 
+            value={num1}
+            onChange={(e) => setNum1(e.target.value)}
+            />
+          
+          <input 
+            type="number" 
+            placeholder="👉🏻 And another number..."
+            value={num2}
+            onChange={(e) => setNum2(e.target.value)}
+            />
+
+          <select name="option" value={op} onChange={(e) => setOp(e.target.value)}>
+            <option value="none">👉🏻 Select operation</option>
+            <option value="plus">+</option>
+            <option value="minus">-</option>
+            <option value="devide">/</option>
+            <option value="multiply">*</option>
+          </select>
+         
+         <input type='button' value='Calculate' onClick ={calculate} />
+         <h1>{result}</h1>
         </div>
       );
     }
