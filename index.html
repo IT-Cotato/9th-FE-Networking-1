@@ -24,10 +24,51 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
+      function CalculateNumber(){
+        var num1 = parseFloat(document.getElementById("first-number-input").value);
+        var num2 = parseFloat(document.getElementById("second-number-input").value);
+        var operator = document.getElementById("operator-select").value;
+        var result;
+
+        switch (operator) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            result = num1 / num2;
+            break;
+          default:
+            result = "";
+            break;
+        }
+
+        document.getElementById("result").innerText = `The result is: ${result}`;
+      }
+
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
-          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
+          <div className="calculator-div">
+            <input type="number" name="first-number" id="first-number-input" placeholder="👉 Write a number..." />
+            <input type="number" name="second-number" id="second-number-input" placeholder="👉 And another one..." />
+            <select name="operator" id="operator-select">
+              <option value="" selected disabled>👉 Select operation</option>
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+            </select>
+            <button id="calculate-btn" onClick={CalculateNumber}>Calculate</button>
+          </div>
+          <div className="result-div">
+            <h1 id="result"></h1>
+          </div>
         </div>
       );
     }
