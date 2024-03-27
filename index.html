@@ -24,14 +24,68 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
+      const [leftValue, setLeftValue] = React.useState("");
+      const [rightValue, setRightValue] = React.useState("");
+      const [result, setResult] = React.useState();
+      const [operator, setOperator] = React.useState("");
+
+      const hanldelClick = () => {
+        if (!leftValue || !rightValue || !operator) {
+          alert("👉Please fill in all fields.");
+          return;
+        }
+
+        if (isNaN(leftValue) || isNaN(rightValue)) {
+          alert("👉Please enter a number.");
+          return;
+        }
+
+        switch (operator) {
+          case "plus":
+            setResult(Number(leftValue) + Number(rightValue));
+            break;
+          case "minus":
+            setResult(Number(leftValue) - Number(rightValue));
+            break;
+          case "multiply":
+            setResult(Number(leftValue) * Number(rightValue));
+            break;
+          case "divide":
+            setResult(Number(leftValue) / Number(rightValue));
+            break;
+          default:
+            break;
+        }
+      };
+
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
-          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
+          <input
+            type="text"
+            value={leftValue}
+            placeholder="👉Write a number..."
+            onChange={(e) => setLeftValue(e.target.value)}
+          />
+          <input
+            type="text"
+            value={rightValue}
+            placeholder="👉And another one..."
+            onChange={(e) => setRightValue(e.target.value)}
+          />
+          <select onChange={(e) => setOperator(e.target.value)}>
+            <option>👉Select operatoin</option>
+            <option value="plus">+</option>
+            <option value="minus">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+          </select>
+          <button onClick={hanldelClick}>Calculate</button>
+          {result && <h1>This result is : {Math.round(result * 100) / 100}</h1>}
         </div>
       );
     }
-    const root = document.getElementById('root');
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
