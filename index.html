@@ -13,25 +13,6 @@
       }
       h1 {
         text-align: center;
-        color: white;
-      }
-      html{
-        background-color: #2c314a;/* 111818 */
-        margin:50px;
-      }
-      .leftLine{
-        float: left;
-        width:0.1px;
-        background-color:white;
-        height: 70vh;
-        margin:3%;
-      }
-      .rightLine{
-        float: right;
-        width:0.1px;
-        background-color:white;
-        height: 70vh;
-        margin:3%;
       }
     </style>
   </head>
@@ -42,62 +23,12 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-
-    function Form() {
-      const [a, setA] = React.useState();
-      const [b, setB] = React.useState();
-      const [selected, setSelected] = React.useState("👉 Select operation...");
-      const [result,setResult]=React.useState("");
-      const [description,setDescription]=React.useState("");
-      const onChangeNumberA=(e)=>{setA(parseInt(e.target.value));}
-      const onChangeNumberB=(e)=>{setB(parseInt(e.target.value));}
-      const handleSelect = (e) => {setSelected(e.target.value);};
-      const handleResult =()=>{
-        switch(selected){
-          case "+":
-            setResult(a+b);
-            break;
-          case "-":
-            setResult(a-b);
-            break;
-          case "*":
-            setResult(a*b);
-            break;
-          case "/":
-            setResult(a/b);
-            break;            
-        }
-        setDescription("The result is :");
-
-      }
-      return (
-        <div>
-          <p></p>
-          <input type="number" onChange={onChangeNumberA} placeholder={"👉Write a number..."}></input>
-          <input type="number" onChange={onChangeNumberB} placeholder={"👉And another one..."}></input>
-          <select  onChange={handleSelect} value={selected}>
-            <option value="" >👉 Select operation...</option>
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-          </select>
-          <button width='100%' onClick={()=>handleResult()}>Calculate</button>
-          <h1>{description} {result}</h1>
-        </div>
-      );
-    }
-
     function App() {
       return (
-        <>
-        <div className="leftLine"></div>
-        <div className="rightLine"></div>
         <div className="container">
-          <h1 >🔥 Calculator 🔥</h1>
-          <Form />
+          <h1>🔥 Calculator 🔥</h1>
+          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
         </div>
-        </>
       );
     }
     const root = document.getElementById('root');
