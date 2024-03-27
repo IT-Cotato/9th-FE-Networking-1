@@ -9,10 +9,13 @@
     />
     <style>
       body {
-        padding: 20px;
+        padding: 50px 20px 20px 20px;
+        height: 100vh;
+        background: black;
       }
       h1 {
         text-align: center;
+        color: white;
       }
     </style>
   </head>
@@ -24,14 +27,65 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
+      const [num1, setNum1] = React.useState();
+      const [num2, setNum2] = React.useState();
+      const [operation, setOperation] = React.useState();
+      const [result, setResult] = React.useState();
+
+      const onChangeNum1 = (e) => {
+        setNum1(e.target.value);
+      };
+      const onChangeNum2 = (e) => {
+        setNum2(e.target.value);
+      };
+      const onChangeOperation = (e) => {
+        setOperation(e.target.value);
+      };
+
+      const calculate = () => {
+        if (operation === "+") {
+          setResult(parseInt(num1) + parseInt(num2));
+        } else if (operation === "-") {
+          setResult(parseInt(num1) - parseInt(num2));
+        } else if (operation === "/") {
+          setResult(parseInt(num1) / parseInt(num2));
+        } else if (operation === "*") {
+          setResult(parseInt(num1) * parseInt(num2));
+        } else {
+          setResult("");
+        }
+      };
+
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
-          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
+          <input
+            type="number"
+            placeholder="👉🏻Write a number..."
+            onChange={onChangeNum1}
+          />
+          <input
+            type="number"
+            placeholder="👉🏻And another one..."
+            onChange={onChangeNum2}
+          />
+          <select
+            name="operation"
+            id="select-operation"
+            onChange={onChangeOperation}
+          >
+            <option value="">👉🏻Select an operation</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="/">/</option>
+            <option value="*">*</option>
+          </select>
+          <button onClick={calculate}>Calculate</button>
+          {result && <h1>The result is: {result}</h1>}
         </div>
       );
     }
-    const root = document.getElementById('root');
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
