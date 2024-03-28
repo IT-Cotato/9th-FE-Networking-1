@@ -14,6 +14,9 @@
       h1 {
         text-align: center;
       }
+      h2 {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -24,10 +27,52 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function App() {
+      const [operand1, setOperand1] = React.useState();
+      const [operand2, setOperand2] = React.useState();
+      const [operator, setOperator] = React.useState();
+      const handleOperand1 = (e) => {
+        setOperand1(e.target.value)
+      };
+      const handleOperand2 = (e) => {
+        setOperand2(e.target.value)
+      };
+      function changeOperator(e) {
+        setOperator(e.target.value);
+      }
+      function calculate() {
+        let result;
+        const num1 = Number(operand1);
+        const num2 = Number(operand2);
+        if(!isNaN(num1) && !isNaN(num2)){
+          if(operator === "plus") {
+            result = num1 + num2;
+          } else if(operator === "minus") {
+            result = num1 - num2;
+          } else if(operator === "divide") {
+            result = num1 / num2;
+          } else {
+            result = num1 * num2;
+          }
+        document.querySelector('h2').innerHTML = 'The result is: ' + result;
+        }
+        
+      }
       return (
         <div className="container">
           <h1>🔥 Calculator 🔥</h1>
-          // 이 부분에 코드를 작성해 주시면 됩니다 (해당 주석은 지워 주세요!)
+          <div>
+            <input type="number" value={operand1} onChange={handleOperand1} placeholder="👉🏻Write a number..."/>
+            <input type="number" value={operand2} placeholder="👉🏻Write a number..." onChange={handleOperand2}/>
+            <select id="operator" onChange={changeOperator} required="required">
+              <option selected disabled hidden>👉🏻Select opertaion</option>
+              <option value="plus">+</option>
+              <option value="minus">-</option>
+              <option value="divide">/</option>
+              <option value="multiply">*</option>
+            </select>
+            <button id="calcutate" onClick={calculate}>Calculate</button>
+            <h2></h2>
+          </div>
         </div>
       );
     }
